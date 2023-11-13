@@ -1,0 +1,48 @@
+<div class="card">
+  @if (name) {
+  <h2>{{ name }}</h2>
+  } @if (address) {
+  <div>{{ address }}</div>
+  }
+  <div class="flex flex-wrap">
+    <div class="w-20">
+      <strong>Company</strong>
+    </div>
+    <div>{{ reference.Company || "N/A" }}</div>
+  </div>
+  <div class="flex flex-wrap">
+    <div class="w-20">
+      <strong>Title</strong>
+    </div>
+    <div>{{ reference.Title || "N/A" }}</div>
+  </div>
+  @if (email || phone) {
+  <div>
+    <button (click)="toggleContact()" class="toggle-button">Contact</button>
+  </div>
+  <div class="toggler" id="reference-contact-{{ reference.Id }}">
+    @if (phone) {
+    <div class="flex flex-wrap">
+      <div class="w-20">
+        <strong>Phone</strong>
+      </div>
+      <div>{{ phone }}</div>
+    </div>
+    } @if (email) {
+    <div class="flex flex-wrap">
+      <div class="w-20">
+        <strong>Email</strong>
+      </div>
+      <div>{{ email }}</div>
+    </div>
+    }
+  </div>
+  } @if (comment) {
+  <div>
+    <button (click)="toggleComment()" class="toggle-button">Comment</button>
+  </div>
+  <div class="toggler" id="reference-comment-{{ reference.Id }}">
+    {{ comment }}
+  </div>
+  }
+</div>

@@ -1,0 +1,3 @@
+#nav-bar {
+  @apply mb-2 m-0 flex flex-wrap justify-between;
+}

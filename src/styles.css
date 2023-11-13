@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply p-2;
+}
+
+h1 {
+  @apply font-extrabold text-2xl mb-2;
+}
+
+h2 {
+  @apply font-bold text-xl;
+}
+
+a {
+  @apply font-bold text-blue-500;
+}
+
+a:hover {
+  @apply underline;
+}
+
+.card {
+  @apply border border-black rounded p-2 mb-2;
+}

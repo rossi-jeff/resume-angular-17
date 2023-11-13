@@ -1,0 +1,34 @@
+<div class="card">
+  <h2>{{ job.Company }}</h2>
+  @if (address) {
+  <div>{{ address }}</div>
+  }
+  <div class="flex">
+    <div class="w-48">
+      <strong class="w-16 inline-block">From</strong>
+      @if (job.From) {
+      {{ job.From.Month }}
+      {{ job.From.Year }}
+      }
+    </div>
+    <div class="w-48">
+      <strong class="w-16 inline-block">To</strong>
+      @if (job.To) {
+      {{ job.To.Month }}
+      {{ job.To.Year }}
+      }
+    </div>
+  </div>
+  <div class="flex">
+    <div class="w-16">
+      <strong>Title</strong>
+    </div>
+    <div class="flex-grow">{{ job.Title }}</div>
+  </div>
+  <div class="flex">
+    <div class="w-16">
+      <strong>Duties</strong>
+    </div>
+    <div class="flex-grow">{{ job.Duties }}</div>
+  </div>
+</div>

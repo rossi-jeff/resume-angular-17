@@ -1,0 +1,11 @@
+.toggler {
+  @apply hidden;
+}
+
+.toggler.visible {
+  @apply block;
+}
+
+.toggle-button {
+  @apply font-bold;
+}

@@ -1,0 +1,170 @@
+<div class="stepper-header">
+  <button class="step-button current" id="step-button-0" (click)="goToStep(0)">
+    Name
+  </button>
+
+  <div class="step-divider">&gt;</div>
+
+  <button class="step-button" id="step-button-1" (click)="goToStep(1)">
+    Address
+  </button>
+
+  <div class="step-divider">&gt;</div>
+
+  <button class="step-button" id="step-button-2" (click)="goToStep(2)">
+    Contact
+  </button>
+
+  <div class="step-divider">&gt;</div>
+
+  <button class="step-button" id="step-button-3" (click)="goToStep(3)">
+    Message
+  </button>
+
+  <div class="step-divider">&gt;</div>
+
+  <button class="step-button" id="step-button-4" (click)="goToStep(4)">
+    Confirmation
+  </button>
+</div>
+
+<div class="step current" id="step-0">
+  <form [formGroup]="contactForm">
+    <div class="flex flex-wrap justify-between" formGroupName="Name">
+      <div>
+        <label for="Salutation">Salutation</label>
+        <select name="Salutation" formControlName="Salutation">
+          <option value="">- select -</option>
+          <option value="Mr">Mr</option>
+          <option value="Mrs">Mrs</option>
+          <option value="Ms">Ms</option>
+          <option value="Dr">Dr</option>
+          <option value="Miss">Miss</option>
+        </select>
+      </div>
+      <div>
+        <label for="First">First</label>
+        <input type="text" name="First" formControlName="First" />
+      </div>
+      <div>
+        <label for="Middle">Middle</label>
+        <input type="text" name="Middle" formControlName="Middle" />
+      </div>
+      <div>
+        <label for="Last">Last</label>
+        <input type="text" name="Last" formControlName="Last" />
+      </div>
+      <div>
+        <label for="Suffix">Suffix</label>
+        <input type="text" name="Suffix" formControlName="Suffix" />
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="step" id="step-1">
+  <form [formGroup]="contactForm">
+    <div formGroupName="Address">
+      <div>
+        <label for="Address">Address</label>
+        <input
+          type="text"
+          name="Address"
+          class="w-full"
+          formControlName="Address"
+        />
+      </div>
+      <div>
+        <label for="Suite">Suite</label>
+        <input
+          type="text"
+          name="Suite"
+          class="w-full"
+          formControlName="Suite"
+        />
+      </div>
+      <div class="flex flex-wrap justify-between">
+        <div>
+          <label for="City">City</label>
+          <input type="text" name="City" formControlName="City" />
+        </div>
+        <div>
+          <label for="State">State</label>
+          <input type="text" name="State" formControlName="State" />
+        </div>
+        <div>
+          <label for="Zip">Zip</label>
+          <input type="text" name="Zip" formControlName="Zip" />
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="step" id="step-2">
+  <form [formGroup]="contactForm">
+    <div class="flex flex-wrap justify-between">
+      <div>
+        <label for="EmailType">Email Type</label>
+        <select name="EmailType" formControlName="EmailType">
+          <option value="Home">Home</option>
+          <option value="Work">Work</option>
+        </select>
+      </div>
+      <div>
+        <label for="Email">Email</label>
+        <input type="text" name="Email" formControlName="Email" />
+      </div>
+      <div>
+        <label for="PhoneType">PhoneType</label>
+        <select name="PhoneType" formControlName="PhoneType">
+          <option value="Home">Home</option>
+          <option value="Work">Work</option>
+          <option value="Cell">Cell</option>
+        </select>
+      </div>
+      <div>
+        <label for="Phone">Phone</label>
+        <input type="text" name="Phone" formControlName="Phone" />
+      </div>
+      <div>
+        <label for="Preferred">Preferred</label>
+        <select name="Preferred" formControlName="Preferred">
+          <option value="Email">Email</option>
+          <option value="Phone">Phone</option>
+        </select>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="step" id="step-3">
+  <form [formGroup]="contactForm">
+    <div>
+      <label for="Subject">Subject</label>
+      <input
+        type="text"
+        name="Subject"
+        class="w-full"
+        formControlName="Subject"
+      />
+    </div>
+    <div>
+      <label for="Message">Message</label>
+      <textarea
+        name="Message"
+        class="w-full h-16"
+        formControlName="Message"
+      ></textarea>
+    </div>
+  </form>
+</div>
+
+<div class="step" id="step-4">
+  {{ contactForm.value | json }}
+</div>
+
+<div class="stepper-footer">
+  <button id="previous-button" (click)="previousStep()">&lt; Previous</button>
+  <button id="next-button" (click)="nextStep()">Next &gt;</button>
+</div>
