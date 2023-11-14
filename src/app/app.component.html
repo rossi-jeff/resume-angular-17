@@ -1,3 +1,9 @@
-<app-nav-bar></app-nav-bar>
-
-<router-outlet></router-outlet>
+<main id="main" class="p-0 m-0">
+  <div class="flex flex-col h-screen max-h-screen">
+    <app-header-bar></app-header-bar>
+    <div class="flex-grow overflow-y-auto p-2">
+      <router-outlet></router-outlet>
+    </div>
+    <app-footer-bar></app-footer-bar>
+  </div>
+</main>
