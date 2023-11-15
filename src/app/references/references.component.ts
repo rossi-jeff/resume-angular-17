@@ -4,11 +4,12 @@ import { GraphqlService } from '../graphql.service';
 import { Reference } from '../../types/reference.type';
 import { GET_REFERENCES_QUERY } from '../../graphql/queries/get-references';
 import { ReferenceCardComponent } from '../reference-card/reference-card.component';
+import { LoadingIndicatorComponent } from '../loading-indicator/loading-indicator.component';
 
 @Component({
   selector: 'app-references',
   standalone: true,
-  imports: [CommonModule, ReferenceCardComponent],
+  imports: [CommonModule, ReferenceCardComponent, LoadingIndicatorComponent],
   templateUrl: './references.component.html',
   styleUrl: './references.component.css',
 })

@@ -1,3 +1,7 @@
-@for (reference of references; track reference.Id) {
+<h1>References</h1>
+
+@if (references.length) { @for (reference of references; track reference.Id) {
 <app-reference-card [reference]="reference"></app-reference-card>
+} } @else {
+<app-loading-indicator></app-loading-indicator>
 }

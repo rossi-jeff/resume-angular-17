@@ -1,3 +1,7 @@
-@for (comment of comments; track comment.Id) {
+<h1>Testimonials</h1>
+
+@if (comments.length) { @for (comment of comments; track comment.Id) {
 <app-comment-card [comment]="comment"></app-comment-card>
+} } @else {
+<app-loading-indicator></app-loading-indicator>
 }

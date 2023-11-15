@@ -1,3 +1,7 @@
-@for (job of jobs; track job.Id) {
+<h1>Employment</h1>
+
+@if (jobs.length) { @for (job of jobs; track job.Id) {
 <app-job-card [job]="job"></app-job-card>
+} } @else {
+<app-loading-indicator></app-loading-indicator>
 }

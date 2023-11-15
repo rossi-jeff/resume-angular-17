@@ -4,11 +4,12 @@ import { GraphqlService } from '../graphql.service';
 import { Link } from '../../types/link.type';
 import { GET_LINKS_QUERY } from '../../graphql/queries/get-links';
 import { LinkCardComponent } from '../link-card/link-card.component';
+import { LoadingIndicatorComponent } from '../loading-indicator/loading-indicator.component';
 
 @Component({
   selector: 'app-links',
   standalone: true,
-  imports: [CommonModule, LinkCardComponent],
+  imports: [CommonModule, LinkCardComponent, LoadingIndicatorComponent],
   templateUrl: './links.component.html',
   styleUrl: './links.component.css',
 })
