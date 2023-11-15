@@ -1,24 +1,3 @@
-.stepper-header,
-.stepper-footer {
-  @apply flex flex-wrap justify-between;
-}
-
-div.step {
-  @apply hidden;
-}
-
-div.step.current {
-  @apply block;
-}
-
-.step-button.current {
-  @apply bg-altLight text-dark px-2 py-1 font-bold rounded;
-}
-
-.step-divider {
-  @apply font-bold text-xl;
-}
-
 label {
   @apply font-bold block;
 }

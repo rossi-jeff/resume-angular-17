@@ -44,6 +44,31 @@ select {
   @apply text-sm px-2 py-1 border rounded bg-altLight text-dark border-dark;
 }
 
+.stepper-header,
+.stepper-footer {
+  @apply flex flex-wrap justify-between bg-altDark text-light rounded px-2 py-1 my-2;
+}
+
+div.step {
+  @apply hidden;
+}
+
+div.step.current {
+  @apply block h-48;
+}
+
+.step-button.current {
+  @apply bg-altLight text-dark px-2 py-1 font-bold rounded;
+}
+
+.step-divider {
+  @apply font-bold text-xl;
+}
+
+.author {
+  @apply text-right text-altDark;
+}
+
 #main.dark {
   @apply bg-dark text-light;
 }
@@ -66,6 +91,15 @@ select {
   @apply text-altLight;
 }
 
+.dark .stepper-header,
+.dark .stepper-footer {
+  @apply bg-altLight text-dark;
+}
+
 .dark .step-button.current {
   @apply bg-altDark text-light;
+}
+
+.dark .author {
+  @apply text-altLight;
 }

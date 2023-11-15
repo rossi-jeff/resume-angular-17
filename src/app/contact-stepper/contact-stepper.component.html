@@ -161,7 +161,45 @@
 </div>
 
 <div class="step" id="step-4">
-  {{ contactForm.value | json }}
+  <div class="flex flex-wrap">
+    <div class="w-24">
+      <strong>Name</strong>
+    </div>
+    <div>{{ name }}</div>
+  </div>
+  <div class="flex flex-wrap">
+    <div class="w-24">
+      <strong>Address</strong>
+    </div>
+    <div>{{ address }}</div>
+  </div>
+  <div class="flex flex-wrap justify-between">
+    <div>
+      <strong>Phone</strong><br />
+      {{ contactForm.value.Phone }}
+    </div>
+    <div>
+      <strong>Email</strong><br />
+      {{ contactForm.value.Email }}
+    </div>
+    <div>
+      <strong>Preferred</strong><br />
+      {{ contactForm.value.Preferred }}
+    </div>
+  </div>
+  <div class="flex flex-wrap">
+    <div class="w-24">
+      <strong>Message</strong>
+    </div>
+    <div>
+      <strong>{{ contactForm.value.Subject }}</strong
+      ><br />
+      {{ contactForm.value.Message }}
+    </div>
+  </div>
+  <div class="text-right">
+    <button>Send</button>
+  </div>
 </div>
 
 <div class="stepper-footer">
