@@ -1,8 +1,25 @@
 <div class="p-2">
-  <div class="flex flex-wrap">
-    <h3>Jeff Rossi</h3>
-    <div class="mx-4">|</div>
-    <h4>Software Developer</h4>
+  <div class="flex flex-wrap justify-between">
+    <div class="flex flex-wrap">
+      <h3>Jeff Rossi</h3>
+      <div class="mx-4 font-bold">|</div>
+      <h4>Software Developer</h4>
+    </div>
+    <div class="flex flex-wrap">
+      <div class="mr-4">
+        <label for="theme" class="mr-2">Theme</label>
+        <select name="theme" (change)="setTheme($event)">
+          @for (t of themes; track t) {
+          <option value="{{ t }}">{{ t }}</option>
+          }
+        </select>
+      </div>
+      <div>
+        <input type="checkbox" name="dark" (change)="toggleDark()" />
+        <label for="dark" class="ml-2">Dark</label>
+      </div>
+    </div>
   </div>
+
   <app-nav-bar></app-nav-bar>
 </div>

@@ -12,17 +12,11 @@ div.step.current {
 }
 
 .step-button.current {
-  @apply bg-slate-200 px-2 py-1 font-bold rounded;
+  @apply bg-altLight text-dark px-2 py-1 font-bold rounded;
 }
 
 .step-divider {
   @apply font-bold text-xl;
-}
-
-input,
-textarea,
-select {
-  @apply text-sm px-2 py-1 border border-black rounded;
 }
 
 label {
