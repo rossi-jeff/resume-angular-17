@@ -8,11 +8,35 @@ import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { LinksComponent } from './links/links.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'education', component: EducationComponent },
-  { path: 'employment', component: EmploymentComponent },
-  { path: 'contact', component: ContactComponent },
-  { path: 'references', component: ReferencesComponent },
-  { path: 'testimonials', component: TestimonialsComponent },
-  { path: 'links', component: LinksComponent },
+  {
+    path: '',
+    component: HomeComponent,
+    title: 'Jeff Rossi | Software Developer',
+  },
+  {
+    path: 'education',
+    component: EducationComponent,
+    title: 'Jeff Rossi | Education',
+  },
+  {
+    path: 'employment',
+    component: EmploymentComponent,
+    title: 'Jeff Rossi | Employment',
+  },
+  {
+    path: 'contact',
+    component: ContactComponent,
+    title: 'Jeff Rossi | Contact',
+  },
+  {
+    path: 'references',
+    component: ReferencesComponent,
+    title: 'Jeff Rossi | References',
+  },
+  {
+    path: 'testimonials',
+    component: TestimonialsComponent,
+    title: 'Jeff Rossi | Testimonials',
+  },
+  { path: 'links', component: LinksComponent, title: 'Jeff Rossi | Links' },
 ];
