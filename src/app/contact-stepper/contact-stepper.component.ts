@@ -1,7 +1,18 @@
-import { Component, Inject, PLATFORM_ID, signal } from '@angular/core';
+import {
+  Component,
+  Inject,
+  Output,
+  PLATFORM_ID,
+  signal,
+  EventEmitter,
+} from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { ContactType, blankContact } from '../../types/contact.type';
+import {
+  ContactFormType,
+  ContactType,
+  blankContact,
+} from '../../types/contact.type';
 import { FormatName } from '../../lib/format-name';
 import { FormatAddress } from '../../lib/format-address';
 
@@ -13,6 +24,7 @@ import { FormatAddress } from '../../lib/format-address';
   styleUrl: './contact-stepper.component.css',
 })
 export class ContactStepperComponent {
+  @Output() send = new EventEmitter<ContactFormType>();
   steps: string[] = ['Name', 'Address', 'Contact', 'Message', 'Confirmation'];
   current: number = 0;
   contactForm = new FormGroup({
@@ -38,9 +50,9 @@ export class ContactStepperComponent {
     Subject: new FormControl(''),
     Message: new FormControl(''),
   });
-  contact = signal<ContactType>(blankContact);
   name: string = '';
   address: string = '';
+  ready = signal(false);
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
@@ -77,6 +89,14 @@ export class ContactStepperComponent {
         }
       }
       this.updateContact();
+      const btn = document.getElementById(
+        'send-contact-button'
+      ) as HTMLButtonElement;
+      if (this.ready()) {
+        btn.disabled = false;
+      } else {
+        btn.disabled = true;
+      }
     }
   };
 
@@ -107,7 +127,13 @@ export class ContactStepperComponent {
     updates.Preferred = value.Preferred || blankContact.Preferred;
     updates.Subject = value.Subject || '';
 
-    this.contact.set(updates);
+    if (this.name && (updates.Email || updates.Phone) && updates.Message) {
+      this.ready.set(true);
+    } else this.ready.set(false);
+  };
+
+  sendContact = () => {
+    this.send.emit(this.contactForm.value);
   };
 
   goToStep = (idx: number) => {

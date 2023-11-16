@@ -69,6 +69,14 @@ div.step.current {
   @apply text-right text-altDark;
 }
 
+button#send-contact-button {
+  @apply border rounded px-2 py-1 text-sm border-dark bg-altDark text-light;
+}
+
+button#send-contact-button:disabled {
+  @apply bg-slate-200 text-black;
+}
+
 #main.dark {
   @apply bg-dark text-light;
 }
@@ -102,4 +110,8 @@ div.step.current {
 
 .dark .author {
   @apply text-altLight;
+}
+
+.dark button#send-contact-button {
+  @apply border-light bg-altLight text-dark;
 }
