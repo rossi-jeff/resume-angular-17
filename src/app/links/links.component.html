@@ -1,3 +1,13 @@
+<h1>Links</h1>
+
+@if (links.length) {
+<div class="flex flex-wrap bg-altDark text-light font-bold py-1 rounded mb-2">
+  <div class="flex-grow px-2">Title</div>
+  <div class="w-20">Type</div>
+  <div class="w-20 text-right px-2">Visit</div>
+</div>
 @for (link of links; track link.Id) {
 <app-link-card [link]="link"></app-link-card>
+} } @else {
+<app-loading-indicator></app-loading-indicator>
 }

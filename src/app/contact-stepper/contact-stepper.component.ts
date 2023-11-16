@@ -1,7 +1,20 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import {
+  Component,
+  Inject,
+  Output,
+  PLATFORM_ID,
+  signal,
+  EventEmitter,
+} from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { ContactType, blankContact } from '../../types/contact.type';
+import {
+  ContactFormType,
+  ContactType,
+  blankContact,
+} from '../../types/contact.type';
+import { FormatName } from '../../lib/format-name';
+import { FormatAddress } from '../../lib/format-address';
 
 @Component({
   selector: 'app-contact-stepper',
@@ -11,6 +24,7 @@ import { ContactType, blankContact } from '../../types/contact.type';
   styleUrl: './contact-stepper.component.css',
 })
 export class ContactStepperComponent {
+  @Output() send = new EventEmitter<ContactFormType>();
   steps: string[] = ['Name', 'Address', 'Contact', 'Message', 'Confirmation'];
   current: number = 0;
   contactForm = new FormGroup({
@@ -36,7 +50,9 @@ export class ContactStepperComponent {
     Subject: new FormControl(''),
     Message: new FormControl(''),
   });
-  contact: ContactType = blankContact;
+  name: string = '';
+  address: string = '';
+  ready = signal(false);
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
@@ -73,34 +89,51 @@ export class ContactStepperComponent {
         }
       }
       this.updateContact();
+      const btn = document.getElementById(
+        'send-contact-button'
+      ) as HTMLButtonElement;
+      if (this.ready()) {
+        btn.disabled = false;
+      } else {
+        btn.disabled = true;
+      }
     }
   };
 
   updateContact = () => {
-    let value = this.contactForm.value;
-    console.log(value);
+    const value = this.contactForm.value;
+    const updates: ContactType = blankContact;
     if (value.Name) {
-      this.contact.Name.First = value.Name.First || '';
-      this.contact.Name.Last = value.Name.Last || '';
-      this.contact.Name.Middle = value.Name.Middle || '';
-      this.contact.Name.Salutation = value.Name.Salutation || '';
-      this.contact.Name.Suffix = value.Name.Suffix || '';
+      updates.Name.First = value.Name.First || '';
+      updates.Name.Last = value.Name.Last || '';
+      updates.Name.Middle = value.Name.Middle || '';
+      updates.Name.Salutation = value.Name.Salutation || '';
+      updates.Name.Suffix = value.Name.Suffix || '';
     }
+    this.name = FormatName(updates.Name);
     if (value.Address) {
-      this.contact.Address.Address = value.Address.Address || '';
-      this.contact.Address.City = value.Address.City || '';
-      this.contact.Address.State = value.Address.State || '';
-      this.contact.Address.Suite = value.Address.Suite || '';
-      this.contact.Address.Zip = value.Address.Zip || '';
+      updates.Address.Address = value.Address.Address || '';
+      updates.Address.City = value.Address.City || '';
+      updates.Address.State = value.Address.State || '';
+      updates.Address.Suite = value.Address.Suite || '';
+      updates.Address.Zip = value.Address.Zip || '';
     }
-    this.contact.Email = value.Email || '';
-    this.contact.EmailType = value.EmailType || blankContact.EmailType;
-    this.contact.Message = value.Message || '';
-    this.contact.Phone = value.Phone || '';
-    this.contact.PhoneType = value.PhoneType || blankContact.PhoneType;
-    this.contact.Preferred = value.Preferred || blankContact.Preferred;
-    this.contact.Subject = value.Subject || '';
-    // console.log(this.contact);
+    this.address = FormatAddress(updates.Address);
+    updates.Email = value.Email || '';
+    updates.EmailType = value.EmailType || blankContact.EmailType;
+    updates.Message = value.Message || '';
+    updates.Phone = value.Phone || '';
+    updates.PhoneType = value.PhoneType || blankContact.PhoneType;
+    updates.Preferred = value.Preferred || blankContact.Preferred;
+    updates.Subject = value.Subject || '';
+
+    if (this.name && (updates.Email || updates.Phone) && updates.Message) {
+      this.ready.set(true);
+    } else this.ready.set(false);
+  };
+
+  sendContact = () => {
+    this.send.emit(this.contactForm.value);
   };
 
   goToStep = (idx: number) => {

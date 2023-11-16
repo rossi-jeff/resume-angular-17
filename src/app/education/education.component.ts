@@ -4,11 +4,12 @@ import { GraphqlService } from '../graphql.service';
 import { School } from '../../types/school.type';
 import { GET_SCHOOLS_QUERY } from '../../graphql/queries/get-schools';
 import { SchoolCardComponent } from '../school-card/school-card.component';
+import { LoadingIndicatorComponent } from '../loading-indicator/loading-indicator.component';
 
 @Component({
   selector: 'app-education',
   standalone: true,
-  imports: [CommonModule, SchoolCardComponent],
+  imports: [CommonModule, SchoolCardComponent, LoadingIndicatorComponent],
   templateUrl: './education.component.html',
   styleUrl: './education.component.css',
 })

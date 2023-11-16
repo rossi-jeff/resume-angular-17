@@ -6,6 +6,10 @@ body {
   @apply p-0 m-0;
 }
 
+#main {
+  @apply bg-light text-dark;
+}
+
 h1 {
   @apply font-extrabold text-2xl mb-2;
 }
@@ -14,8 +18,16 @@ h2 {
   @apply font-bold text-xl;
 }
 
+h3 {
+  @apply text-lg text-altDark;
+}
+
+h4 {
+  @apply text-lg font-light;
+}
+
 a {
-  @apply font-bold text-blue-500;
+  @apply font-bold text-altDark;
 }
 
 a:hover {
@@ -23,5 +35,83 @@ a:hover {
 }
 
 .card {
-  @apply border border-black rounded p-2 mb-2;
+  @apply border bg-altLight border-altDark rounded p-2 mb-2;
+}
+
+input,
+textarea,
+select {
+  @apply text-sm px-2 py-1 border rounded bg-altLight text-dark border-dark;
+}
+
+.stepper-header,
+.stepper-footer {
+  @apply flex flex-wrap justify-between bg-altDark text-light rounded px-2 py-1 my-2;
+}
+
+div.step {
+  @apply hidden;
+}
+
+div.step.current {
+  @apply block h-48;
+}
+
+.step-button.current {
+  @apply bg-altLight text-dark px-2 py-1 font-bold rounded;
+}
+
+.step-divider {
+  @apply font-bold text-xl;
+}
+
+.author {
+  @apply text-right text-altDark;
+}
+
+button#send-contact-button {
+  @apply border rounded px-2 py-1 text-sm border-dark bg-altDark text-light;
+}
+
+button#send-contact-button:disabled {
+  @apply bg-slate-200 text-black;
+}
+
+#main.dark {
+  @apply bg-dark text-light;
+}
+
+.dark a {
+  @apply text-altLight;
+}
+
+.dark .card {
+  @apply bg-altDark border-altLight;
+}
+
+.dark input,
+.dark select,
+.dark textarea {
+  @apply bg-altDark text-light border-light;
+}
+
+.dark h3 {
+  @apply text-altLight;
+}
+
+.dark .stepper-header,
+.dark .stepper-footer {
+  @apply bg-altLight text-dark;
+}
+
+.dark .step-button.current {
+  @apply bg-altDark text-light;
+}
+
+.dark .author {
+  @apply text-altLight;
+}
+
+.dark button#send-contact-button {
+  @apply border-light bg-altLight text-dark;
 }

@@ -1,3 +1,7 @@
-@for (school of schools; track school.Id) {
+<h1>Education</h1>
+
+@if (schools.length) { @for (school of schools; track school.Id) {
 <app-school-card [school]="school"></app-school-card>
+} } @else {
+<app-loading-indicator></app-loading-indicator>
 }

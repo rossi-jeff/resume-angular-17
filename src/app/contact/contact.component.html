@@ -1,3 +1,7 @@
-<p>contact works!</p>
+<h1>Contact</h1>
 
-<app-contact-stepper></app-contact-stepper>
+@if (sent()) {
+<app-contact-sent [name]="name()"></app-contact-sent>
+} @else {
+<app-contact-stepper (send)="sendContact($event)"></app-contact-stepper>
+}
